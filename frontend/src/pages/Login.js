@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
 import { toast, ToastContainer } from 'react-toastify'; // Import ToastContainer and toast
 import 'react-toastify/dist/ReactToastify.css'; // Import Toastify CSS
 import summaryApi from '../common/index'; // Adjust the import as needed
 import Logo from '../components/Logo';
+import Context from '../context/index';
+
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -14,6 +16,8 @@ const LoginForm = () => {
   });
 
   const navigate = useNavigate(); // Initialize the navigate function
+  const {fetchUserDetails}=useContext(Context);
+
 
   const handleTogglePassword = () => {
     setShowPassword(!showPassword);
@@ -48,7 +52,9 @@ const LoginForm = () => {
             background: 'linear-gradient(to right, #4a90e2, #9013fe)',
             color: 'white'
           }
-        });
+        },
+        fetchUserDetails()
+      );
 
         
         setTimeout(() => {

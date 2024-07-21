@@ -26,11 +26,15 @@ function App() {
 
   return (
     <>
+    <Context.Provider value={{
+        fetchUserDetails  //fetching user details
+    }}>
     <Header />
     <main className='min-h-[calc(100vh-110px)]'>
       <Outlet />
     </main>
     <Footer />
+    </Context.Provider>
     </>
   );
 }
