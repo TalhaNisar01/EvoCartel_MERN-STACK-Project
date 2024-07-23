@@ -1,11 +1,135 @@
+.admin-panel-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: transparent;
+}
+
+.sidebar {
+  border-radius: 20px;
+  background: linear-gradient(to right, #4a90e2, #9013fe);
+  padding: 20px;
+  width: 200px;
+  color: white;
+}
+
+.profile-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.profile-pic-container {
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+
+.profile-pic {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.profile-icon {
+  font-size: 100px;
+}
+
+.profile-name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.profile-role {
+  font-size: 14px;
+  color: #ddd;
+}
+
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+  background: #f8f9fa;
+}
+
+.bg-white {
+  background: white;
+}
+
+.userTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.userTable th, .userTable td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.userTable th {
+  background: linear-gradient(to right, #4a90e2, #9013fe);
+  color: white;
+}
+
+.userTable tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.bg-green-100 {
+  background-color: #d4edda;
+}
+
+.bg-green-500 {
+  background-color: #28a745;
+}
+
+.bg-green-500:hover {
+  color: white;
+}
+
+.edit-icon {
+  transition: color 0.3s ease; /* Smooth transition for color change */
+}
+
+.edit-icon:hover {
+  color: blue; /* Change color to blue on hover */
+}
 
 
-/* for navbar button */
+.bg-red-600 {
+  background-color: #dc3545;
+}
+
+.bg-red-700 {
+  background-color: #c82333;
+}
+
+/* Navbar Button Styles */
 .input-gradient-border {
-    border-image: linear-gradient(90deg, skyblue, gray) 1;
-  }
-  
- 
+  border-image: linear-gradient(90deg, skyblue, gray) 1;
+}
+
 .gradient-button {
   background: linear-gradient(90deg, gray, blue);
   color: white;
@@ -27,8 +151,7 @@
   outline: none;
 }
 
-
-/* Gradient button in login page */
+/* Login Page Styles */
 .gradient-shadow {
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.6);
 }
@@ -38,41 +161,6 @@
   -webkit-text-fill-color: transparent;
 }
 
-.gradient-button {
-  background: linear-gradient(90deg, gray, blue);
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 0.375rem; /* Tailwind's rounded-md */
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.3s ease, transform 0.3s ease;
-}
-
-.gradient-button:hover {
-  background: linear-gradient(90deg, blue, gray);
-  transform: scale(1.05);
-}
-
-
-/* for login page  */
-/* Custom gradient text for the header */
-.text-gradient {
-  background: linear-gradient(90deg, #4f46e5, #8b5cf6);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
-}
-
-/* Custom styles for the button */
-.bg-gradient-to-r {
-  background: linear-gradient(90deg, #4f46e5, #8b5cf6);
-}
-
-
-/* Darker gradient shadow for the form */
 .gradient-shadow {
   position: relative;
   box-shadow: 0 10px 20px gray, 0 4px 6px blue;
@@ -90,5 +178,81 @@
   filter: blur(15px); /* Increase blur for a more diffused shadow effect */
 }
 
+/* Custom Gradient Text for the Header */
+.text-gradient {
+  background: linear-gradient(90deg, #4f46e5, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Custom Styles for the Button */
+.bg-gradient-to-r {
+  background: linear-gradient(90deg, #4f46e5, #8b5cf6);
+}
 
 
+
+/* Footer Styles */
+footer {
+  background: #1f2937;
+  color: #ffffff;
+}
+
+footer h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+footer p,
+footer ul {
+  color: #d1d5db;
+}
+
+footer a {
+  color: #d1d5db;
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: #3b82f6;
+}
+
+footer ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+footer ul li {
+  margin-bottom: 0.75rem;
+}
+
+footer .social-icons a {
+  color: #d1d5db;
+  transition: color 0.3s;
+}
+
+footer .social-icons a:hover {
+  color: #3b82f6;
+}
+
+footer .newsletter input {
+  padding: 0.75rem;
+  border-radius: 0.375rem 0 0 0.375rem;
+  border: none;
+  outline: none;
+}
+
+footer .newsletter button {
+  padding: 0.75rem;
+  border-radius: 0 0.375rem 0.375rem 0;
+  border: none;
+  background-color: #3b82f6;
+  color: #ffffff;
+  transition: background-color 0.3s;
+}
+
+footer .newsletter button:hover {
+  background-color: #2563eb;
+}

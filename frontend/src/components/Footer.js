@@ -3,7 +3,7 @@ import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/f
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white py-12">
+    <footer className=" text-white py-12">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Information */}
@@ -21,10 +21,10 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul>
-              <li className="mb-2"><a href="#" className="hover:text-blue-500">Home</a></li>
-              <li className="mb-2"><a href="#" className="hover:text-blue-500">Shop</a></li>
-              <li className="mb-2"><a href="#" className="hover:text-blue-500">About Us</a></li>
-              <li className="mb-2"><a href="#" className="hover:text-blue-500">Contact Us</a></li>
+              <li className="mb-2"><a href="#" className="hover:text-blue-500 transition duration-300">Home</a></li>
+              <li className="mb-2"><a href="#" className="hover:text-blue-500 transition duration-300">Shop</a></li>
+              <li className="mb-2"><a href="#" className="hover:text-blue-500 transition duration-300">About Us</a></li>
+              <li className="mb-2"><a href="#" className="hover:text-blue-500 transition duration-300">Contact Us</a></li>
             </ul>
           </div>
 
@@ -32,10 +32,10 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Customer Service</h3>
             <ul>
-              <li className="mb-2"><a href="#" className="hover:text-blue-500">FAQ</a></li>
-              <li className="mb-2"><a href="#" className="hover:text-blue-500">Returns</a></li>
-              <li className="mb-2"><a href="#" className="hover:text-blue-500">Shipping</a></li>
-              <li className="mb-2"><a href="#" className="hover:text-blue-500">Privacy Policy</a></li>
+              <li className="mb-2"><a href="#" className="hover:text-blue-500 transition duration-300">FAQ</a></li>
+              <li className="mb-2"><a href="#" className="hover:text-blue-500 transition duration-300">Returns</a></li>
+              <li className="mb-2"><a href="#" className="hover:text-blue-500 transition duration-300">Shipping</a></li>
+              <li className="mb-2"><a href="#" className="hover:text-blue-500 transition duration-300">Privacy Policy</a></li>
             </ul>
           </div>
 
@@ -43,11 +43,26 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Follow Us</h3>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-blue-500"><FaFacebookF size={24} /></a>
-              <a href="#" className="text-gray-400 hover:text-blue-500"><FaTwitter size={24} /></a>
-              <a href="#" className="text-gray-400 hover:text-blue-500"><FaInstagram size={24} /></a>
-              <a href="#" className="text-gray-400 hover:text-blue-500"><FaLinkedinIn size={24} /></a>
+              <a href="#" className="text-gray-400 hover:text-blue-500 transition duration-300"><FaFacebookF size={24} /></a>
+              <a href="#" className="text-gray-400 hover:text-blue-500 transition duration-300"><FaTwitter size={24} /></a>
+              <a href="#" className="text-gray-400 hover:text-blue-500 transition duration-300"><FaInstagram size={24} /></a>
+              <a href="#" className="text-gray-400 hover:text-blue-500 transition duration-300"><FaLinkedinIn size={24} /></a>
             </div>
+          </div>
+        </div>
+
+        {/* Newsletter Subscription */}
+        <div className="mt-8">
+          <h3 className="text-lg font-semibold mb-4 text-center">Subscribe to our Newsletter</h3>
+          <div className="flex justify-center items-center">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              className="p-2 rounded-l-lg focus:outline-none text-gray-900"
+            />
+            <button className="p-2 bg-blue-500 text-white rounded-r-lg hover:bg-blue-600 transition duration-300">
+              Subscribe
+            </button>
           </div>
         </div>
       </div>

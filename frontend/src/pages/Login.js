@@ -1,12 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
-import { toast, ToastContainer } from 'react-toastify'; // Import ToastContainer and toast
-import 'react-toastify/dist/ReactToastify.css'; // Import Toastify CSS
-import summaryApi from '../common/index'; // Adjust the import as needed
+import { Link, useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import summaryApi from '../common/index';
 import Logo from '../components/Logo';
 import Context from '../context/index';
-
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -15,9 +14,8 @@ const LoginForm = () => {
     password: ""
   });
 
-  const navigate = useNavigate(); // Initialize the navigate function
-  const {fetchUserDetails}=useContext(Context);
-
+  const navigate = useNavigate();
+  const { fetchUserDetails } = useContext(Context);
 
   const handleTogglePassword = () => {
     setShowPassword(!showPassword);
@@ -44,28 +42,32 @@ const LoginForm = () => {
       });
 
       const response = await dataResponse.json();
-      console.log("Response:", response); // Log the response to debug
+      console.log("Response:", response);
 
       if (dataResponse.ok) {
         toast.success('Login successful!', {
           style: {
             background: 'linear-gradient(to right, #4a90e2, #9013fe)',
             color: 'white'
-          }
-        },
-        fetchUserDetails()
-      );
+          },
+          autoClose: 2000, // Auto close after 2 seconds
+          closeOnClick: true // Close on click
+        });
 
-        
+        fetchUserDetails();
+
         setTimeout(() => {
+          toast.dismiss(); // Dismiss all toasts
           navigate('/');
-        }, 2000); 
+        }, 2000);
       } else {
         toast.error(response.message || 'Failed to login. Please try again.', {
           style: {
             background: 'linear-gradient(to right, #e94e77, #ff6b6b)',
             color: 'white'
-          }
+          },
+          autoClose: 3000, // Auto close after 3 seconds
+          closeOnClick: true // Close on click
         });
       }
     } catch (error) {
@@ -73,7 +75,9 @@ const LoginForm = () => {
         style: {
           background: 'linear-gradient(to right, #e94e77, #ff6b6b)',
           color: 'white'
-        }
+        },
+        autoClose: 3000, // Auto close after 3 seconds
+        closeOnClick: true // Close on click
       });
     }
   };
@@ -147,7 +151,7 @@ const LoginForm = () => {
           </p>
         </div>
       </div>
-      <ToastContainer /> {/* Add ToastContainer to render toasts */}
+      <ToastContainer />
     </div>
   );
 };

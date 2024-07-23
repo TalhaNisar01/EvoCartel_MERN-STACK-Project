@@ -6,10 +6,13 @@ import Footer from './components/Footer';
 import { useEffect } from 'react';
 import summaryApi from './common/index'
 import Context from './context/index';
+import {useDispatch} from 'react-redux'
+import { setUserDetails } from './store/userSlice';
+
 
 function App() {
 
-
+  const dispatch =useDispatch()
   const fetchUserDetails=async()=>{
     const dataResponse=await fetch(summaryApi.current_user.url,{
        method:summaryApi.current_user.method,
@@ -17,7 +20,10 @@ function App() {
     })
     
     const dataApi=await dataResponse.json()
-    console.log("User Details:",dataResponse)
+    if(dataApi.success){
+      dispatch(setUserDetails(dataApi.data))
+    }
+    // console.log("User Details:",dataResponse)
   }
 
   useEffect(()=>{

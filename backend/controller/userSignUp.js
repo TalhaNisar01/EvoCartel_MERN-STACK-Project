@@ -1,9 +1,24 @@
 const bcrypt = require('bcryptjs');
 const userModel = require('../models/userModel');
+const multer = require('multer');
+const path = require('path');
+
+// Set up multer for file handling
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads/');
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + path.extname(file.originalname)); // Append the file extension
+    }
+});
+
+const upload = multer({ storage: storage });
 
 async function userSignUp(req, res) {
     try {
         const { email, password, name } = req.body;
+        const profilePic = req.file ? req.file.path : null;
 
         // Validate input
         if (!email) {
@@ -29,12 +44,13 @@ async function userSignUp(req, res) {
         // Hash the password
         const hashedPassword = await bcrypt.hash(password, 12); // 12 is the salt rounds
 
-        // Create a new user with default role as 'general'
+        // Create a new user with default role as 'GENERAL' and profile picture
         const user = new userModel({
             email,
             name,
             password: hashedPassword,
-            role: 'GENERAL' // Setting default role
+            role: 'GENERAL', // Setting default role
+            profilePic
         });
 
         // Save user to the database
@@ -57,5 +73,6 @@ async function userSignUp(req, res) {
 }
 
 module.exports = {
-    userSignUp
+    userSignUp,
+    upload // Export the upload middleware
 };

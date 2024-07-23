@@ -54,73 +54,82 @@ const SignUpPage = () => {
     }
   };
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
 
-  if (data.password !== data.confirmPassword) {
-    setError("Passwords do not match.");
-    return;
-  }
 
-  setError(""); // Clear any previous errors
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  console.log("Sign Up Successfully", data);
-
-  try {
-    const dataResponse = await fetch(summaryApi.signUp.url, {
-      method: summaryApi.signUp.method,
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data)
-    });
-
-    const dataApi = await dataResponse.json();
-    
-    if (!dataResponse.ok) {
-      // Handle specific error messages from the backend
-      if (dataApi.message === "User already exists") {
-        throw new Error(dataApi.message);
-      } else {
-        throw new Error(`HTTP error! status: ${dataResponse.status}`);
-      }
+    if (data.password !== data.confirmPassword) {
+        setError("Passwords do not match.");
+        return;
     }
 
-    console.log("SignUp Data:", dataApi);
+    setError(""); // Clear any previous errors
 
-    // Show success message
-    toast.success('User successfully created!', {
-      style: {
-        background: 'linear-gradient(to right, #4a90e2, #9013fe)',
-        color: 'white'
-      }
-    });
-
-    // Redirect to login page after 2 seconds
-    setTimeout(() => {
-      navigate('/login');
-    }, 2000);
-  } catch (error) {
-    console.error("Error signing up:", error);
-
-    // Show error message based on the error
-    if (error.message === "User already exists") {
-      toast.error('User already exists. Please use a different email.', {
-        style: {
-          background: 'linear-gradient(to right, #e94e77, #ff6b6b)',
-          color: 'white'
-        }
-      });
-    } else {
-      toast.error('Failed to sign up. Please try again.', {
-        style: {
-          background: 'linear-gradient(to right, #e94e77, #ff6b6b)',
-          color: 'white'
-        }
-      });
+    const formData = new FormData();
+    formData.append("name", data.name);
+    formData.append("email", data.email);
+    formData.append("password", data.password);
+    if (data.profilePicture) {
+        formData.append("profilePic", data.profilePicture);
     }
-  }
+
+    console.log("Sign Up Successfully", data);
+
+    try {
+        const dataResponse = await fetch(summaryApi.signUp.url, {
+            method: summaryApi.signUp.method,
+            body: formData // Send formData instead of JSON
+        });
+
+        const dataApi = await dataResponse.json();
+
+        if (!dataResponse.ok) {
+            // Handle specific error messages from the backend
+            if (dataApi.message === "User already exists") {
+                throw new Error(dataApi.message);
+            } else {
+                throw new Error(`HTTP error! status: ${dataResponse.status}`);
+            }
+        }
+
+        console.log("SignUp Data:", dataApi);
+
+        // Show success message
+        toast.success('User successfully created!', {
+            style: {
+                background: 'linear-gradient(to right, #4a90e2, #9013fe)',
+                color: 'white'
+            }
+        });
+
+        // Redirect to login page after 2 seconds
+        setTimeout(() => {
+            navigate('/login');
+        }, 2000);
+    } catch (error) {
+        console.error("Error signing up:", error);
+
+        // Show error message based on the error
+        if (error.message === "User already exists") {
+            toast.error('User already exists. Please use a different email.', {
+                style: {
+                    background: 'linear-gradient(to right, #e94e77, #ff6b6b)',
+                    color: 'white'
+                }
+            });
+        } else {
+            toast.error('Failed to sign up. Please try again.', {
+                style: {
+                    background: 'linear-gradient(to right, #e94e77, #ff6b6b)',
+                    color: 'white'
+                }
+            });
+        }
+    }
 };
+
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100 mt-4 mb-20">
