@@ -12,6 +12,17 @@ const { updateUser } = require("../controller/updateUser");
 const UploadProductController = require('../controller/uploadProduct');
 const getProductController = require('../controller/getProduct');
 const updateProductController = require('../controller/updateProduct');
+const getCategoryProduct = require('../controller/getCategoryProduct');
+const getCategoryWiseProduct = require('../controller/getCategoryWiseProduct');
+const getProductDetails = require('../controller/getProductDetails');
+const addToCartController = require('../controller/addToCartController');
+const countAddToCartProduct = require('../controller/countAddToCartProduct');
+const addToCartViewProduct = require('../controller/addToCartViewProduct');
+const updateAddToCartProduct = require('../controller/updateAddToCart');
+const deleteAddToCartProduct = require('../controller/deleteAddToCartProduct');
+
+
+
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -33,5 +44,23 @@ router.post("/update-user", authToken, updateUser);
 router.post("/upload-product", authToken, UploadProductController);
 router.get("/get-product", getProductController);
 router.post("/update-product", authToken, updateProductController);
+
+router.get("/get-categoryProduct",getCategoryProduct);
+router.post("/category-product",getCategoryWiseProduct)
+
+
+
+router.post("/product-details",getProductDetails)
+//
+
+router.post("/addtocart",authToken,addToCartController)
+
+
+router.get("/countAddToCartProduct",authToken,countAddToCartProduct)
+router.get("/view-cart-product",authToken,addToCartViewProduct)
+router.post("/update-cart-product",authToken,updateAddToCartProduct)
+router.post("/delete-cart-product",authToken,deleteAddToCartProduct)
+
+
 
 module.exports = router;

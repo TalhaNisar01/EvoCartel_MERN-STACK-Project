@@ -4,6 +4,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import moment from 'moment';
 import { MdModeEdit } from "react-icons/md";
 import ChangeUserRole from '../components/ChangeUserRole';
+import Loading from '../loading'; // Import the Loading component
 import 'react-toastify/dist/ReactToastify.css'; // Ensure Toastify CSS is imported
 import '../App.css';
 
@@ -16,6 +17,7 @@ const AllUsers = () => {
         role: "",
         _id: ""
     });
+    const [loading, setLoading] = useState(true); // Add loading state
 
     const fetchAllUsers = async () => {
         try {
@@ -27,14 +29,14 @@ const AllUsers = () => {
             const dataResponse = await fetchData.json();
             if (dataResponse.success) {
                 setAllUsers(dataResponse.data);
-            //     toast.success(dataResponse.message, {
-            //         style: {
-            //              background: 'linear-gradient(to right, #4a90e2, #9013fe)',
-            // color: 'white'
-            //         },
-            //         autoClose: 3000,
-            //         closeOnClick: true
-            //     });
+                // toast.success(dataResponse.message, {
+                //     style: {
+                //         background: 'linear-gradient(to right, #4a90e2, #9013fe)',
+                //         color: 'white'
+                //     },
+                //     autoClose: 3000,
+                //     closeOnClick: true
+                // });
             } else {
                 toast.error(dataResponse.message, {
                     style: {
@@ -54,12 +56,18 @@ const AllUsers = () => {
                 autoClose: 3000,
                 closeOnClick: true
             });
+        } finally {
+            setLoading(false); // Set loading to false when fetching ends
         }
     };
 
     useEffect(() => {
         fetchAllUsers();
     }, []);
+
+    if (loading) {
+        return <Loading />; // Render the Loading component while loading
+    }
 
     return (
         <div className='bg-white pb-4' style={{ padding: '20px', borderRadius: '10px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>

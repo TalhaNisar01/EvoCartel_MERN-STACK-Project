@@ -66,18 +66,32 @@ const AdminEditProduct = ({ onClose, productData, fetchData }) => {
     const responseData = await response.json();
 
     if (responseData.success) {
-      toast.success(responseData?.message);
+      toast.success(responseData?.message, {
+        style: {
+            background: 'linear-gradient(to right, #4a90e2, #9013fe)',
+            color: 'white'
+        },
+        autoClose: 3000,
+        closeOnClick: true
+    });
       onClose();
       fetchData();
     }
 
     if (responseData.error) {
-      toast.error(responseData?.message);
+      toast.error(responseData?.message, {
+        style: {
+            background: 'linear-gradient(to right, #e94e77, #ff6b6b)',
+            color: 'white'
+        },
+        autoClose: 3000,
+        closeOnClick: true
+    });
     }
   };
 
   return (
-    <div className='fixed w-full h-full bg-slate-200 bg-opacity-35 top-0 left-0 right-0 bottom-0 flex justify-center items-center'>
+    <div className='fixed w-full h-full bg-slate-200 bg-opacity-35 top-0 left-0 right-0 bottom-0 flex justify-center items-center z-50'>
       <div className='bg-white p-4 rounded w-full max-w-2xl h-full max-h-[80%] overflow-hidden'>
         <div className='flex justify-between items-center pb-3'>
           <h2 className='font-bold text-lg'>Edit Product</h2>
@@ -145,7 +159,7 @@ const AdminEditProduct = ({ onClose, productData, fetchData }) => {
                         setFullScreenImage(el);
                       }}
                     />
-                    <div className='absolute bottom-0 right-0 p-1 text-white bg-red-600 rounded-full hidden group-hover:block cursor-pointer' onClick={() => handleDeleteProductImage(index)}>
+                    <div className='absolute bottom-0 right-0 p-1 text-white bg-blue-700 rounded-full hidden group-hover:block cursor-pointer' onClick={() => handleDeleteProductImage(index)}>
                       <MdDelete />
                     </div>
                   </div>
@@ -191,7 +205,7 @@ const AdminEditProduct = ({ onClose, productData, fetchData }) => {
           >
           </textarea>
 
-          <button className='px-3 py-2 bg-red-600 text-white mb-10 hover:bg-red-700'>Update Product</button>
+          <button className='px-3 py-2 bg-blue-700 text-white mb-10 hover:bg-blue-900'>Update Product</button>
         </form>
       </div>
 

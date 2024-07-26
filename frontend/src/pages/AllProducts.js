@@ -2,21 +2,29 @@ import React, { useEffect, useState } from 'react';
 import UploadProduct from '../components/UploadProduct';
 import summaryApi from '../common/index';
 import AdminProductCard from '../components/AdminProductCard';
+import Loading from '../loading'; 
 
 const AllProducts = () => {
   const [openUploadProduct, setOpenUploadProduct] = useState(false);
   const [allProduct, setAllProduct] = useState([]);
+  const [loading, setLoading] = useState(true); // Add loading state
 
   const fetchAllProduct = async () => {
+    setLoading(true); // Set loading to true when fetching starts
     const response = await fetch(summaryApi.allProduct.url);
     const dataResponse = await response.json();
     console.log("Data All Products:", dataResponse);
     setAllProduct(dataResponse?.data || []);
+    setLoading(false); // Set loading to false when fetching ends
   };
 
   useEffect(() => {
     fetchAllProduct();
   }, []);
+
+  if (loading) {
+    return <Loading />; // Render the Loading component while loading
+  }
 
   return (
     <div className='p-4'>
@@ -30,8 +38,8 @@ const AllProducts = () => {
         </button>
       </div>
 
-      {/* All products section */}
-      <div className='flex flex-wrap gap-5 py-4 overflow-y-auto'>
+      {/* Scrollable container for all products */}
+      <div className='flex flex-wrap gap-5 py-4 overflow-y-auto max-h-[80vh]'>
         {allProduct.map((product, index) => (
           <AdminProductCard data={product} key={index} fetchData={fetchAllProduct} />
         ))}

@@ -70,7 +70,7 @@ const UploadProduct = ({ onClose, fetchData }) => {
   };
 
   return (
-    <div className='fixed w-full h-full bg-black bg-opacity-50 top-0 left-0 right-0 bottom-0 flex justify-center items-center'>
+    <div className='fixed w-full h-full bg-slate-200 bg-opacity-35 top-0 left-0 right-0 bottom-0 flex justify-center items-center z-50'>
       <div className='bg-white p-6 rounded-lg shadow-lg w-full max-w-2xl overflow-hidden relative'>
         <div className='flex justify-between items-center mb-4'>
           <h2 className='font-bold text-xl'>Upload Product</h2>
@@ -147,7 +147,7 @@ const UploadProduct = ({ onClose, fetchData }) => {
                     setFullScreenImage(el);
                   }}
                 />
-                <button className='absolute top-1 right-1 p-1 bg-red-600 text-white rounded-full opacity-0 group-hover:opacity-100 transition' onClick={() => handleDeleteProductImage(index)}>
+                <button className='absolute top-1 right-1 p-1 bg-blue-700 text-white rounded-full opacity-0 group-hover:opacity-100 transition' onClick={() => handleDeleteProductImage(index)}>
                   <MdDelete />
                 </button>
               </div>

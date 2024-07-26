@@ -1,3 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+
+
+
 .admin-panel-container {
   display: flex;
   min-height: 100vh;
@@ -112,6 +117,25 @@
   transition: color 0.3s ease; /* Smooth transition for color change */
 }
 
+/* ------------- */
+.relative {
+  position: relative;
+}
+.shadow-lg {
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+.border-2 {
+  border-width: 2px;
+}
+.border-gray-300 {
+  border-color: #D1D5DB;
+}
+.hover\:bg-gray-100:hover {
+  background-color: #F3F4F6;
+}
+
+
+/* -------------------- */
 .edit-icon:hover {
   color: blue; /* Change color to blue on hover */
 }
@@ -255,4 +279,205 @@ footer .newsletter button {
 
 footer .newsletter button:hover {
   background-color: #2563eb;
+}
+
+
+
+/* for categoryList */
+
+
+
+
+
+
+.category-container {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+
+.category-item {
+  flex: 1 0 0%; /* Adjust flex-basis to a smaller percentage */
+  min-width: 150px; /* Decrease minimum width of category items */
+  padding: 8px;
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.category-card {
+  border:transparent; /* Light gray border */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  padding: 16px;
+  text-align: center;
+  cursor: pointer; /* Pointer cursor */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+  height: 100%; /* Ensure card takes full height of its container */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.category-card:hover {
+  background-color: rgb(213, 182, 124); /* Light gray background on hover */
+  transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+.category-item img {
+  height: 64px;
+  margin: 0 auto 8px; /* Center and space the image */
+}
+
+.category-item h3 {
+  font-size: 1rem; /* Medium font size */
+  font-weight: 500; /* Medium font weight */
+  color: #4b5563; /* Gray text color */
+}
+
+.bg-alt-color {
+  background-color: rgb(203, 208, 239);
+}
+
+.bg-light-color {
+  background-color: rgb(226, 218, 204);
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.flex {
+  display: flex;
+}
+
+.overflow-x-auto {
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+}
+
+.overflow-x-auto::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.min-w-max {
+  min-width: 150px; /* Adjust as needed */
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.p-2 {
+  padding: 0.5rem;
+}
+
+.border {
+  border: 1px solid #ddd;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.shadow-md {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.p-4 {
+  padding: 1rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.h-16 {
+  height: 4rem;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.text-md {
+  font-size: 1rem;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+}
+
+.text-gray-500 {
+  color: #6b7280;
+}
+
+.category-container {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+
+.category-container::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+.scroll-btn {
+  background-color: #f1d8d8;
+  color: #404750;
+  border: none;
+  padding: 0.5rem;
+  font-size: 0.7rem;
+  cursor: pointer;
+  border-radius: 50%;
+  box-shadow: 0 4px 6px rgba(153, 149, 212, 0.1);
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.scroll-btn:hover {
+  background-color: #e0e0e0;
+  transform: scale(1.1);
+}
+
+.scroll-btn:focus {
+  outline: none;
+}
+
+.container .heading {
+  color: #1f2937;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
 }
