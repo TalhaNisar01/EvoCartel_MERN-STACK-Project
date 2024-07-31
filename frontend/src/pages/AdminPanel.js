@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { FaRegCircleUser, FaUsers, FaBoxOpen } from "react-icons/fa6";
+import { FaRegCircleUser, FaUsers, FaBoxOpen,FaJediOrder } from "react-icons/fa6";
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import ROLE from '../common/role';
 import '../App.css';
@@ -19,6 +19,7 @@ const AdminPanel = () => {
         <div className="admin-panel-container">
             <aside className="sidebar">
                 <div className="profile-section">
+                    <h1 className=''></h1>
                     <div className="profile-pic-container">
                         {user?.profilePic ? (
                             <img src={`http://localhost:8000/${user.profilePic}`} alt={user?.name} className="profile-pic" />
@@ -32,10 +33,13 @@ const AdminPanel = () => {
 
                 <nav className="nav-menu">
                     <Link to="all-users" className="nav-link">
-                        <FaUsers /> All Users
+                        <FaUsers /> Manage Users
                     </Link>
                     <Link to="all-products" className="nav-link">
-                        <FaBoxOpen /> All Products
+                        <FaBoxOpen /> Manage Products
+                    </Link>
+                    <Link to="manage-orders" className="nav-link">
+                        <FaJediOrder /> Manage Orders
                     </Link>
                 </nav>
             </aside>
@@ -48,3 +52,21 @@ const AdminPanel = () => {
 };
 
 export default AdminPanel;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,83 @@
+/* src/components/ProductCard.css */
+.product-card {
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center; /* Center text and other elements */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  width: 350px; /* Set a fixed width */
+  height: 200px; /* Set a fixed height */
+  display: flex;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center; /* Center content horizontally */
+  position: relative; /* For positioning the button */
+}
+
+.product-card:hover {
+  box-shadow: 0 4px 8px rgba(113, 8, 218, 0.1);
+}
+
+.product-image {
+  max-width: 250px; /* Adjust the image width as needed */
+  height: 100px;
+  border-radius: 8px;
+  mix-blend-mode: multiply; /* Add mix-blend-mode */
+  margin-bottom: 10px; /* Add some space below the image */
+}
+
+.product-title {
+  font-size: 1.2rem;
+  margin: 10px 0;
+  color: #333;
+  flex-grow: 1;
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%; /* Full width of the card */
+  height: 100%; /* Full height of the card */
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  border-radius: 8px;
+  opacity: 0;
+  transition: opacity 0.3s ease; /* Smooth transition */
+}
+
+.product-card:hover .button-wrapper {
+  opacity: 1; /* Show the button wrapper on hover */
+}
+
+.product-button {
+  background-color: #1e84de;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  display: block;
+}
+
+.product-button:hover {
+  background-color: #0e43cb;
+}
+
+/* Background colors for specific cards */
+.product-card.bg-color-1 {
+  background-color: #f0d0a6; 
+}
+
+.product-card.bg-color-2 {
+  background-color: #b0d0ec;
+}
+
+.product-card.bg-color-3 {
+  background-color: #b4ebb4; 
+}

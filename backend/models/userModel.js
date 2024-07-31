@@ -31,7 +31,9 @@ const userSchema = new Schema({
   role: {
     type: String,
     default: 'general'
-  }
+  },
+  resetPasswordToken: String,
+  resetPasswordExpiry: Date,
 }, {
   timestamps: true 
 });

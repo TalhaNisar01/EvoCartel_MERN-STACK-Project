@@ -14,6 +14,8 @@ function App() {
 
 
   const [cartProductCount,setCartProductCount] = useState(0)
+  const [wishlistCount, setWishlistCount] = useState(0);
+
 
   const dispatch =useDispatch()
   const fetchUserDetails=async()=>{
@@ -42,24 +44,38 @@ function App() {
     setCartProductCount(dataApi?.data?.count)
   }
 
+  const fetchUserWishlistCount = async () => {
+    
+      const response = await fetch(summaryApi.countWishlistProducts.url, {
+        method: summaryApi.countWishlistProducts.method,
+        credentials: 'include'
+      })
+
+      const dataApi = await response.json();
+      setWishlistCount(dataApi?.data?.count)
+
+  }
+
 
 
   useEffect(()=>{
     fetchUserDetails()
 
-
+    fetchUserWishlistCount()
     fetchUserAddToCart()
   },[])
 
   return (
     <>
     <Context.Provider value={{
-        fetchUserDetails , //fetching user details
+        fetchUserDetails , 
         cartProductCount,
-        fetchUserAddToCart
+        fetchUserAddToCart,
+        wishlistCount,
+        fetchUserWishlistCount
     }}>
     <Header />
-    <main className='min-h-[calc(100vh-110px)] pt-20'>
+    <main className='min-h-[calc(100vh-110px)] pt-20 bg-white'>
       <Outlet />
     </main>
     <Footer />

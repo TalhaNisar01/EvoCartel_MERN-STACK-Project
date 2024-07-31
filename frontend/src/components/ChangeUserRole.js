@@ -9,6 +9,7 @@ const ChangeUserRole = ({
     email,
     role,
     userId,
+    imageUrl, // Add imageUrl as a prop
     onClose,
     callFunc,
 }) => {
@@ -73,8 +74,19 @@ const ChangeUserRole = ({
                     <IoMdClose size={24} />
                 </button>
                 <h1 className="text-2xl font-bold mb-6 text-gray-800">Change User Role</h1>
-                <p className="text-gray-700 mb-2"><strong>Name:</strong> {name}</p>
-                <p className="text-gray-700 mb-6"><strong>Email:</strong> {email}</p>
+                <div className='flex items-center mb-4'>
+                    <div className='bg-gray-200 p-2 rounded-full'>
+                        <img 
+                            src={imageUrl || `https://ui-avatars.com/api/?name=${name}`} 
+                            alt={name} 
+                            className='w-16 h-16 rounded-full object-cover' 
+                        />
+                    </div>
+                    <div className='ml-4'>
+                        <p className="text-gray-700 mb-2"><strong>Name:</strong> {name}</p>
+                        <p className="text-gray-700 mb-6"><strong>Email:</strong> {email}</p>
+                    </div>
+                </div>
                 <div className="flex items-center justify-between mb-6">
                     <p className="text-gray-700"><strong>Role:</strong></p>
                     <select className="border border-gray-300 rounded-md px-4 py-2 text-gray-700 focus:ring focus:ring-blue-300" value={userRole} onChange={handleOnChangeSelect}>

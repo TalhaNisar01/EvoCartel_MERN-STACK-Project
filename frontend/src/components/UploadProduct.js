@@ -60,12 +60,24 @@ const UploadProduct = ({ onClose, fetchData }) => {
     const responseData = await response.json();
     console.log("Response Data:", responseData);
     if (responseData.success) {
-      toast.success(responseData.message);
+      toast.success(responseData.message, {
+        position:'top-center',
+        autoClose: 3000,
+        style: {
+          background: 'linear-gradient(to right, #4a90e2, #9013fe)',
+          color: '#fff',
+        },
+      });
       onClose(); // Close the upload form
       fetchData(); // Fetch all products to update the list
     }
     if (responseData.error) {
-      toast.error(responseData.message);
+      toast.error(responseData.message, {
+        style: {
+          background: 'linear-gradient(to right, #e94e77, #ff6b6b)',
+          color: 'white'
+        }
+      });
     }
   };
 

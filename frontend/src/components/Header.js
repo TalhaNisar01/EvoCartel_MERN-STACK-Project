@@ -21,17 +21,19 @@ const Header = () => {
   const navigate = useNavigate();
   const context = useContext(Context);
 
+
   const [selectedCategory, setSelectedCategory] = useState('');
   const [isCategoryDropdownOpen, setIsCategoryDropdownOpen] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const [filteredCategories, setFilteredCategories] = useState(productCategory);
   const [isLoading, setIsLoading] = useState(false);
   const [cartCount, setCartCount] = useState(0);
+  const [wishlistCount, setWishlistCount] = useState(0)
+
 
   const categoryDropdownRef = useRef(null);
   const profileDropdownRef = useRef(null);
 
- 
   const handleLogout = async () => {
     setIsLoading(true); // Start loading state
     try {
@@ -52,6 +54,7 @@ const Header = () => {
         dispatch(setUserDetails(null));
         setTimeout(() => {
           setIsLoading(false); // Stop loading state
+          navigate('/');
           window.location.reload(); // Refresh the page
         }, 1000); // Adjust the timeout duration as needed
       } else {
@@ -119,12 +122,12 @@ const Header = () => {
   useEffect(() => {
     if (user?.userId) {
       fetchCartCount(user.userId);
+      fetchWishlistCount(user.userId);
     }
   }, [user]);
 
   const fetchCartCount = async (userId) => {
     try {
-    
       const response = await fetch(`${summaryApi.addToCartProductCount.url}?userId=${userId}`, {
         method: summaryApi.addToCartProductCount.method,
         credentials: 'include'
@@ -143,11 +146,39 @@ const Header = () => {
     }
   };
 
+
+
+
+  //fetch wishlist count function
+
+  const fetchWishlistCount = async (userId) => {
+    try {
+      const response = await fetch(`${summaryApi.countWishlistProducts.url}?userId=${userId}`, {
+        method: summaryApi.countWishlistProducts.method,
+        credentials: 'include'
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setWishlistCount(data.wishlistCount); // Update state with fetched wishlist count
+      } else {
+        setWishlistCount(0); // Set to 0 if fetching fails
+      }
+    } catch (error) {
+      console.error('Error fetching wishlist count:', error);
+      setWishlistCount(0); // Set to 0 on error
+    }
+  };
+
   if (isLoading) {
     return <Loading />;
   }
 
+  // console.log("Wishlist Count:",context?.wishlistCount)
+
   return (
+
     <header className='h-20 shadow-md bg-white fixed w-full z-40'>
       <div className="container mx-auto flex items-center justify-between px-4">
         <div className='cursor-pointer' onClick={handleIconClick}>
@@ -158,7 +189,7 @@ const Header = () => {
         <div className="relative mt-4 flex items-center">
           <div className="relative flex items-center border-2 focus-within:border-gray-300 focus-within:shadow-md">
             <div className="relative" ref={categoryDropdownRef}>
-              <div 
+              <div
                 className="relative flex items-center cursor-pointer px-2 py-2 focus:outline-none focus:text-gray-600"
                 onClick={toggleCategoryDropdown}
               >
@@ -167,8 +198,8 @@ const Header = () => {
               </div>
               {isCategoryDropdownOpen && (
                 <div className="absolute left-0 mt-2 w-48 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto z-10">
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     className="w-[90%] px-2 py-2 border-b mx-2 my-2 focus:outline-none border-2 border-gray-200"
                     placeholder="Search categories"
                     onChange={handleCategorySearch}
@@ -179,8 +210,8 @@ const Header = () => {
                       setIsCategoryDropdownOpen(false);
                     }}>All Categories</div>
                     {filteredCategories.map(category => (
-                      <div 
-                        key={category.id} 
+                      <div
+                        key={category.id}
                         className="px-4 py-2 cursor-pointer hover:bg-gray-100"
                         onClick={() => {
                           setSelectedCategory(category.value);
@@ -219,27 +250,43 @@ const Header = () => {
                 ) : (
                   <FaRegUserCircle />
                 )}
-                {isProfileDropdownOpen && user?.role === 'ADMIN' && (
-                  <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 w-48 bg-white border border-gray-300 rounded-md shadow-lg">
-                    <Link
-                      to="/admin-panel/all-products"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center"
-                    >
-                      <BiCog className="mr-2" /> Admin Panel
-                    </Link>
+                {isProfileDropdownOpen && (
+                  <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 w-32 bg-gray-300 border border-gray-300 rounded-md shadow-lg z-50">
+                    <div className="py-2">
+                      <Link
+                        to={`/user-profile/${user?._id}`}
+                        className="block px-4 py-2 text-sm text-black hover:bg-blue-500 hover:text-white transition duration-200"
+                      >
+                        Profile
+                      </Link>
+                      {user?.role === 'ADMIN' && (
+                        <Link
+                          to="/admin-panel/all-products"
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500 hover:text-white transition duration-200 flex items-center"
+                        >
+                           Admin Panel
+                        </Link>
+                      )}
+                    </div>
                   </div>
                 )}
+
               </div>
             </div>
           )}
           <div className='text-3xl relative flex items-center'>
-            <div className="relative flex items-center mr-4">
+            <Link to="/wishlist" className="relative flex items-center mr-4 cursor-pointer">
               <AiOutlineHeart />
-              <div className='absolute -top-2 left-4 bg-gray-700 text-white w-5 h-5 rounded-full p-1 flex items-center justify-center'>
-                <p className='text-xs'>0</p>
-              </div>
-              <span className="ml-1 text-sm text-gray-600">Wishlist</span>
-            </div>
+              {user?._id && (
+                <>
+                  <div className='absolute -top-2 left-4 bg-gray-700 text-white w-5 h-5 rounded-full p-1 flex items-center justify-center'>
+                    <p className='text-xs'>{context?.wishlistCount}</p>
+                  </div>
+                  <span className="ml-1 text-sm text-gray-600">Wishlist</span>
+                </>
+              )}
+            </Link>
+
             <Link to="/cart" className="relative flex items-center mr-4 cursor-pointer">
               <AiOutlineShoppingCart />
               {user?._id && (
@@ -269,3 +316,16 @@ const Header = () => {
 }
 
 export default Header;
+
+
+
+
+
+
+
+
+
+
+
+
+

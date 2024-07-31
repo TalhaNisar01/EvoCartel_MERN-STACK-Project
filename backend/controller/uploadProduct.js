@@ -4,7 +4,7 @@ const productModel = require("../models/productModel");
 async function UploadProductController(req, res) {
     try {
         const sessionUserId =  req.user?.id;
-        console.log(`Session User ID: ${sessionUserId}`); // Log the sessionUserId
+        // console.log(`Session User ID: ${sessionUserId}`); // Log the sessionUserId
 
         // Fetch the user directly from the database
         const user = await userModel.findById(sessionUserId);

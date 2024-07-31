@@ -11,7 +11,7 @@
 
 .sidebar {
   border-radius: 20px;
-  background: linear-gradient(to right, #4a90e2, #9013fe);
+  background: linear-gradient(to right, #219269, #945bc5);
   padding: 20px;
   width: 200px;
   color: white;
@@ -63,13 +63,15 @@
   gap: 10px;
   color: white;
   text-decoration: none;
-  padding: 10px;
-  border-radius: 5px;
-  transition: background 0.3s;
+  padding: 15px;
+  border-radius: 10px;
+  transition: background 0.3s, transform 0.3s;
+  font-size: 16px;
 }
 
 .nav-link:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
 }
 
 .main-content {
@@ -481,3 +483,57 @@ img {
 .scrollbar-none::-webkit-scrollbar {
   display: none;
 }
+
+
+
+
+
+/* src/pages/Home.css */
+/* src/pages/Home.css */
+.product-card-container {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px;
+  flex-wrap: wrap; /* Allow wrapping to handle smaller screens */
+  gap: 20px; /* Add space between the cards */
+}
+
+
+
+
+
+
+
+.stylish-heading {
+  position: relative;
+  display: inline-block;
+  color: #333;
+}
+
+.stylish-heading::after {
+  content: '';
+  display: block;
+  width: 60%;
+  border-radius: 4px;
+  height: 4px;
+  background: linear-gradient(to right, #1e84de, rgb(196, 185, 185));
+  position: absolute;
+  bottom: -16px;
+  left: 20px;
+  margin-bottom: 24px;
+}
+
+
+
+
+
+
+/* .brand-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #4a90e2;
+  margin-bottom: 5px;
+} */
+
+
+

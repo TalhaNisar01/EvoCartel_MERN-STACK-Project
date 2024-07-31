@@ -3,10 +3,11 @@ import SummaryApi from '../common/index';
 import { toast, ToastContainer } from 'react-toastify';
 import moment from 'moment';
 import { MdModeEdit } from "react-icons/md";
+import { FaEnvelope, FaUserShield, FaCalendarAlt } from "react-icons/fa"; // Import icons
 import ChangeUserRole from '../components/ChangeUserRole';
 import Loading from '../loading'; // Import the Loading component
 import 'react-toastify/dist/ReactToastify.css'; // Ensure Toastify CSS is imported
-import '../App.css';
+import '../App.css'; // Make sure you have relevant styles here
 
 const AllUsers = () => {
     const [allUser, setAllUsers] = useState([]);
@@ -15,7 +16,8 @@ const AllUsers = () => {
         email: "",
         name: "",
         role: "",
-        _id: ""
+        _id: "",
+        imageUrl: ""
     });
     const [loading, setLoading] = useState(true); // Add loading state
 
@@ -70,41 +72,39 @@ const AllUsers = () => {
     }
 
     return (
-        <div className='bg-white pb-4' style={{ padding: '20px', borderRadius: '10px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
-            <table className='w-full userTable' style={{ width: '100%', borderCollapse: 'collapse' }}>
-                <thead>
-                    <tr className='bg-black text-white' style={{ background: 'linear-gradient(to right, #4a90e2, #9013fe)', color: 'white' }}>
-                        <th style={{ padding: '10px', border: '1px solid #ddd' }}>Sr.</th>
-                        <th style={{ padding: '10px', border: '1px solid #ddd' }}>Name</th>
-                        <th style={{ padding: '10px', border: '1px solid #ddd' }}>Email</th>
-                        <th style={{ padding: '10px', border: '1px solid #ddd' }}>Role</th>
-                        <th style={{ padding: '10px', border: '1px solid #ddd' }}>Created Date</th>
-                        <th style={{ padding: '10px', border: '1px solid #ddd' }}>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {allUser.map((el, index) => (
-                        <tr key={el._id} style={{ backgroundColor: index % 2 === 0 ? '#f2f2f2' : 'white' }}>
-                            <td style={{ padding: '10px', border: '1px solid #ddd' }}>{index + 1}</td>
-                            <td style={{ padding: '10px', border: '1px solid #ddd' }}>{el?.name}</td>
-                            <td style={{ padding: '10px', border: '1px solid #ddd' }}>{el?.email}</td>
-                            <td style={{ padding: '10px', border: '1px solid #ddd' }}>{el?.role}</td>
-                            <td style={{ padding: '10px', border: '1px solid #ddd' }}>{moment(el?.createdAt).format('LL')}</td>
-                            <td style={{ padding: '10px', border: '1px solid #ddd' }}>
-                                <button className='bg-green-100 p-2 rounded-full cursor-pointer hover:bg-green-500 hover:text-white'
-                                    onClick={() => {
-                                        setUpdateUserDetails(el);
-                                        setOpenUpdateRole(true);
-                                    }}
-                                    style={{ border: 'none', background: 'none' }}
-                                >
-                                    <MdModeEdit className="edit-icon" style={{ fontSize: '20px' }} />
-                                </button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+        <div className='container mx-auto p-4'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+                {allUser.map((el) => (
+                    <div key={el._id} className='bg-white p-4 rounded-lg shadow-lg flex flex-col items-start'>
+                        <div className='flex items-center mb-4'>
+                            <div className='bg-gray-200 p-2 rounded-full'>
+                                {/* Display user's image if available, otherwise display default avatar */}
+                                <img 
+                                    src={el.imageUrl || `https://ui-avatars.com/api/?name=${el.name}`} 
+                                    alt={el.name} 
+                                    className='w-16 h-16 rounded-full object-cover' 
+                                />
+                            </div>
+                            <div className='ml-4'>
+                                <h2 className='text-lg font-semibold'>{el.name}</h2>
+                                <p className='text-gray-600 flex items-center'><FaEnvelope className="mr-2" />{el.email}</p>
+                                <p className='text-gray-500 flex items-center'><FaUserShield className="mr-2" />{el.role}</p>
+                                <p className='text-gray-400 text-sm flex items-center'><FaCalendarAlt className="mr-2" />Created on: {moment(el.createdAt).format('LL')}</p>
+                            </div>
+                        </div>
+                        <button 
+                            className='bg-blue-700 text-white p-2 rounded-full hover:bg-blue-900 flex items-center'
+                            onClick={() => {
+                                setUpdateUserDetails(el);
+                                setOpenUpdateRole(true);
+                            }}
+                        >
+                            <MdModeEdit className='mr-2' />
+                            Edit Role
+                        </button>
+                    </div>
+                ))}
+            </div>
 
             {openUpdateRole && (
                 <ChangeUserRole
@@ -113,6 +113,7 @@ const AllUsers = () => {
                     email={updateUserDetails.email}
                     role={updateUserDetails.role}
                     userId={updateUserDetails._id}
+                    imageUrl={updateUserDetails.imageUrl} // Pass imageUrl as a prop
                     callFunc={fetchAllUsers}
                 />
             )}

@@ -1,0 +1,92 @@
+.stylish-heading2 {
+    position: relative;
+    display: inline-block;
+    color: #333;
+    margin-bottom: 32px; /* Adjust as needed to create space for the line below */
+  }
+  
+  .stylish-heading2::after {
+    content: '';
+    display: block;
+    width: 20%;
+    border-radius: 4px;
+    height: 4px;
+    background: linear-gradient(to right, #1e84de, rgb(196, 185, 185));
+    position: absolute;
+    left: 20px;
+  }
+  
+  .stylish-heading2::before {
+    top: -28px; /* Adjust as needed to position the line above */
+  }
+  
+  
+
+
+
+/* Manage Order.css */
+
+
+.manage-orders-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.manage-orders-header {
+  /* text-align: center; */
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+.manage-orders-header::after {
+  content: '';
+  display: block;
+  width:10%;
+  border-radius: 4px;
+  height: 4px;
+  background: linear-gradient(to right, #1e84de, rgb(196, 185, 185));
+  position: absolute;
+  margin: auto;
+}
+
+.manage-order-item {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: #f9f9f9;
+}
+
+.manage-order-item-header {
+  margin-top: 0;
+}
+
+.manage-order-item-text {
+  margin: 5px 0;
+}
+
+.manage-order-item-select {
+  margin-left: 10px;
+  padding: 5px;
+}
+
+.manage-order-item-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.manage-order-item-list-item {
+  margin: 5px 0;
+  padding: 5px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+}
+
+.manage-order-item-total {
+  font-weight: bold;
+  margin-top: 10px;
+  font-size: 1.2em;
+  color: #333;
+}

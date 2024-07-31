@@ -6,7 +6,7 @@ async function authToken(req, res, next) {
 
         if (!token) {
             return res.status(403).json({
-                message: 'No token provided || user is not logged in',
+                message: 'Please Login...',
                 success: false,
                 error: true
             });
@@ -22,7 +22,7 @@ async function authToken(req, res, next) {
                 });
             }
 
-            console.log("Decoded Token:", decoded); // Log the decoded token
+            // console.log("Decoded Token:", decoded); // Log the decoded token
             req.user = decoded; // Ensure this is setting the correct user info
             next();
         });

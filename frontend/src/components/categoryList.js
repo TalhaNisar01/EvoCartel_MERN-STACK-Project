@@ -1,10 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import '../App.css';
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'; // Importing icons from react-icons
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import productCategory from '../helpers/productCategory';
-
-// Importing images directly
 import airpodesImage from '../assets/products/airpodes/boAt TRebel Airdopes 431 1.webp';
 import cameraImage from '../assets/products/camera/camera1.gif';
 import earphoneImage from '../assets/products/earphones/Rockerz 265 V2 2.webp';
@@ -17,7 +14,9 @@ import speakerImage from '../assets/products/speakers/BLITZ 2000 1.webp';
 import trimmerImage from '../assets/products/trimmers/Ambrane AGK-11 Trimmer 60 min Runtime 18 Length Settings (Black) 1.webp';
 import televisionImage from '../assets/products/TV/iFFALCON by TCL F53 100 cm (40 inch) Full HD LED Smart Android TV with Android 11 (40F53) 1.webp';
 import watcheImage from '../assets/products/watches/boAt Cosmos Pro 1.webp';
-import shirtImage from '../assets/products/shirts/Stylish blue plaid shirt for men -3.jpg';
+import shirtImage from '../assets/products/shirts/Blue Shirt.jpg';
+import pantImage from '../assets/products/pants/Black Cargo Pant.jpg';
+import trouserImage from '../assets/products/trouser/trouser1.jpg';
 
 const categoryImages = {
   airpodes: airpodesImage,
@@ -33,11 +32,11 @@ const categoryImages = {
   televisions: televisionImage,
   watches: watcheImage,
   shirts: shirtImage,
-  pants: shirtImage,
-  trousers: shirtImage,
+  pants: pantImage,
+  trousers: trouserImage,
 };
 
-const CategoryList = () => {
+const CategoryList = ({ onCategoryClick }) => {
   const scrollRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -45,11 +44,10 @@ const CategoryList = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate a network request
     const loadData = () => {
       setTimeout(() => {
         setIsLoading(false);
-      }, 2000); // Simulate a 2-second loading time
+      }, 2000);
     };
     loadData();
   }, []);
@@ -71,7 +69,7 @@ const CategoryList = () => {
   const onMouseMove = (e) => {
     if (!isDragging) return;
     const x = e.pageX - scrollRef.current.offsetLeft;
-    const walk = (x - startX) * 2; // Scroll speed
+    const walk = (x - startX) * 2;
     scrollRef.current.scrollLeft = scrollLeft - walk;
   };
 
@@ -95,7 +93,6 @@ const CategoryList = () => {
       {isLoading ? (
         <div className="flex justify-center items-center h-64">
           <div className="loader"></div>
-          {/* CSS for the loader */}
           <style jsx>{`
             .loader {
               border: 4px solid #f3f3f3;
@@ -119,11 +116,11 @@ const CategoryList = () => {
           onMouseDown={onMouseDown}
           onMouseMove={onMouseMove}
           onMouseUp={onMouseUp}
-          onMouseLeave={onMouseUp} // To handle the case when the mouse leaves the container
+          onMouseLeave={onMouseUp}
         >
           {productCategory.map((category, index) => (
-            <div key={index} className="category-item">
-              <Link to={`/product-category/${category.value}`} className={`category-card ${index % 2 === 0 ? 'bg-alt-color' : 'bg-light-color'}`}>
+            <div key={index} className="category-item" onClick={() => onCategoryClick(category.value)}>
+              <div className={`category-card ${index % 2 === 0 ? 'bg-alt-color' : 'bg-light-color'}`}>
                 <img
                   src={categoryImages[category.value]}
                   alt={category.label}
@@ -132,7 +129,7 @@ const CategoryList = () => {
                 <h3 className="text-md font-medium text-gray-600">
                   {category.label}
                 </h3>
-              </Link>
+              </div>
             </div>
           ))}
         </div>

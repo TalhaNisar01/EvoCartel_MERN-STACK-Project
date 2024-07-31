@@ -4,7 +4,7 @@ const productModel = require('../models/productModel');
 async function updateProductController(req, res) {
   try {
     const sessionUserId = req.user?.id; // Use req.user._id assuming req.user is set correctly by authToken middleware
-     console.log("sessionUserId:",sessionUserId)
+    //  console.log("sessionUserId:",sessionUserId)
     // Fetch the user directly from the database
     const user = await userModel.findById(sessionUserId);
     if (!user) {

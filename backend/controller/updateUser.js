@@ -3,7 +3,7 @@ const userModel = require("../models/userModel");
 async function updateUser(req, res) {
     try {
         const sessionUser = req.user?.id; // Ensure to use the correct property based on your middleware
-        console.log("Session User ID:", sessionUser);
+        // console.log("Session User ID:", sessionUser);
        
         // Check if sessionUser exists
         if (!sessionUser) {

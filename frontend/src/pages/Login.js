@@ -11,13 +11,13 @@ import Loading from '../loading'; // Ensure the path is correct
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [data, setData] = useState({
-    email: "",
-    password: ""
+    email: '',
+    password: '',
   });
   const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
-  const { fetchUserDetails } = useContext(Context);
+  const { fetchUserDetails, fetchUserAddToCart,fetchUserWishlistCount } = useContext(Context);
 
   const handleTogglePassword = () => {
     setShowPassword(!showPassword);
@@ -27,7 +27,7 @@ const LoginForm = () => {
     const { name, value } = e.target;
     setData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -38,66 +38,67 @@ const LoginForm = () => {
     try {
       const dataResponse = await fetch(summaryApi.signIn.url, {
         method: summaryApi.signIn.method,
-        credentials: "include",
+        credentials: 'include',
         headers: {
-          "Content-Type": "application/json"
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(data),
       });
 
       const response = await dataResponse.json();
-      console.log("Response:", response);
+      console.log('Response:', response);
 
       if (dataResponse.ok) {
         toast.success('Login successful!', {
           style: {
             background: 'linear-gradient(to right, #4a90e2, #9013fe)',
-            color: 'white'
+            color: 'white',
           },
-          autoClose: 2000, // Auto close after 2 seconds
-          closeOnClick: true // Close on click
+          autoClose: 2000,
+          closeOnClick: true,
         });
 
         await fetchUserDetails(); // Fetch user details after login
-
-        // Delay the redirection to show the loading spinner
+        await fetchUserAddToCart();
+        await fetchUserWishlistCount();
         setTimeout(() => {
+          toast.dismiss()
           setIsLoading(false); // Hide loading spinner
-          toast.dismiss(); // Dismiss all toasts
           navigate('/'); // Redirect to home page
         }, 2000);
       } else {
         toast.error(response.message || 'Failed to login. Please try again.', {
           style: {
             background: 'linear-gradient(to right, #e94e77, #ff6b6b)',
-            color: 'white'
+            color: 'white',
           },
-          autoClose: 3000, // Auto close after 3 seconds
-          closeOnClick: true // Close on click
+          autoClose: 3000,
+          closeOnClick: true,
         });
-        setIsLoading(false); // Hide loading spinner
+        setIsLoading(false);
       }
     } catch (error) {
       toast.error('An unexpected error occurred. Please try again.', {
         style: {
           background: 'linear-gradient(to right, #e94e77, #ff6b6b)',
-          color: 'white'
+          color: 'white',
         },
-        autoClose: 3000, // Auto close after 3 seconds
-        closeOnClick: true // Close on click
+        autoClose: 3000,
+        closeOnClick: true,
       });
-      setIsLoading(false); // Hide loading spinner
+      setIsLoading(false);
     }
   };
 
   return (
     <>
+      <ToastContainer />
       {isLoading ? (
         <Loading />
       ) : (
         <div className="flex justify-center items-center min-h-screen bg-gray-100">
           <div className="w-full max-w-md p-8 bg-white gradient-shadow rounded-lg border border-gray-300">
-            <div className='flex items-center mb-8 ml-16'>
+            <div className="flex items-center mb-8 ml-16">
               <Logo w={200} h={70} />
             </div>
             <form onSubmit={handleSubmit}>
@@ -143,10 +144,7 @@ const LoginForm = () => {
                 </button>
               </div>
               <div className="text-center">
-                <Link
-                  to="/forgot-password"
-                  className="text-blue-500 hover:text-blue-700"
-                >
+                <Link to="/forgot-password" className="text-blue-500 hover:text-blue-700">
                   Forgot Password?
                 </Link>
               </div>
@@ -154,16 +152,12 @@ const LoginForm = () => {
             <div className="text-center mt-4">
               <p className="text-gray-700">
                 Don't have an account?{' '}
-                <Link
-                  to="/SignUp"
-                  className="text-blue-500 hover:text-blue-700 font-bold"
-                >
+                <Link to="/SignUp" className="text-blue-500 hover:text-blue-700 font-bold">
                   Sign Up
                 </Link>
               </p>
             </div>
           </div>
-          <ToastContainer />
         </div>
       )}
     </>

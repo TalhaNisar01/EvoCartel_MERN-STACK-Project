@@ -18,61 +18,118 @@ const summaryApi = {
     url: `${backendDomain}/api/userLogout`,
     method: 'GET'
   },
-  
+
   allUser: {
     url: `${backendDomain}/api/all-user`,
     method: 'GET'
   },
-  
-  updateUser:{
+
+  updateUser: {
     url: `${backendDomain}/api/update-user`,
     method: 'POST'
   },
-  uploadProduct:{
+  uploadProduct: {
     url: `${backendDomain}/api/upload-product`,
     method: 'POST'
 
   },
-  allProduct:{
+  allProduct: {
     url: `${backendDomain}/api/get-product`,
-    method:'GET'
+    method: 'GET'
   },
-  updateProduct:{
+  updateProduct: {
     url: `${backendDomain}/api/update-product`,
     method: 'POST'
 
   },
-  categoryProduct:{
+  categoryProduct: {
     url: `${backendDomain}/api/get-categoryProduct`,
-    method:'GET'
+    method: 'GET'
   },
-  categoryWiseProduct:{
+  categoryWiseProduct: {
     url: `${backendDomain}/api/category-product`,
-    method:'POST'
+    method: 'POST'
   },
-  productDetails:{
+  productDetails: {
     url: `${backendDomain}/api/product-details`,
-    method:'POST'
+    method: 'POST'
   },
-  addToCartProduct:{
+  addToCartProduct: {
     url: `${backendDomain}/api/addtocart`,
-    method:'POST'
+    method: 'POST'
   },
-  addToCartProductCount:{
+  addToCartProductCount: {
     url: `${backendDomain}/api/countAddToCartProduct`,
-    method:'GET'
+    method: 'GET'
   },
-  addToCartProductView:{
+  addToCartProductView: {
     url: `${backendDomain}/api/view-cart-product`,
-    method:'GET'
+    method: 'GET'
   },
-  updateCartProduct:{
+  updateCartProduct: {
     url: `${backendDomain}/api/update-cart-product`,
-    method:'POST'
+    method: 'POST'
   },
-  deleteCartProduct:{
+  deleteCartProduct: {
     url: `${backendDomain}/api/delete-cart-product`,
-    method:'POST'
+    method: 'POST'
+  },
+
+  deleteProduct: {
+    url: `${backendDomain}/api/delete-product`,
+    method: 'POST'
+  },
+  // New endpoints for forgot password and reset password
+  forgotPassword: {
+    url: `${backendDomain}/api/forgot-password`,
+    method: "POST",
+  },
+  resetPassword: {
+    url: `${backendDomain}/api/reset-password`,
+    method: "POST",
+  },
+
+  userProfile: (userId) => ({
+    url: `${backendDomain}/api/user/${userId}`,
+    method: "GET",
+  }),
+  updateUserDetails: (userId) => ({
+    url: `${backendDomain}/api/update-userdetails/${userId}`,
+    method: 'PUT'
+  }),
+  deleteUser: (userId) => ({
+    url: `${backendDomain}/api/delete-user/${userId}`,
+    method: 'DELETE'
+  }),
+
+  addToWishlist: {
+    url: `${backendDomain}/api/add-to-wishlist`,
+    method: 'POST'
+  },
+  countWishlistProducts: {
+    url: `${backendDomain}/api/count-wishlist-products`,
+    method: 'GET'
+  },
+  getWishlistProducts: {
+    url: `${backendDomain}/api/wishlist-products`,
+    method: 'GET'
+  },
+  removeWishlistProduct: {
+    url: `${backendDomain}/api/remove-from-wishlist`,
+    method: 'DELETE'
+  },
+  // New endpoints for order management
+  createOrder: {
+    url: `${backendDomain}/api/create-order`,
+    method: 'POST'
+  },
+  getUserOrders: {
+    url: `${backendDomain}/api/my-orders`,
+    method: 'GET'
+  },
+  updateOrderStatus:{
+   url: `${backendDomain}/api/update-order-status`,
+    method: 'POST'
   }
 
 
