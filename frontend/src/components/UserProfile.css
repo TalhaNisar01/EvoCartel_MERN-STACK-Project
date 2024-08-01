@@ -350,3 +350,21 @@
   background-color: #f8d7da;
   color: #721c24;
 }
+
+
+
+
+
+
+
+
+.status-update-label {
+  background-color: #e74c3c;
+  position: relative;
+  top: 2;
+  left: 2;
+  color: #fff;
+  padding: 2px 5px;
+  border-radius: 3px;
+  margin-left: 10px;
+}

@@ -34,6 +34,17 @@ const Header = () => {
   const categoryDropdownRef = useRef(null);
   const profileDropdownRef = useRef(null);
 
+  const [floatingTexts, setFloatingTexts] = useState([]);
+  const [textIndex, setTextIndex] = useState(0);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+
+
+
   const handleLogout = async () => {
     setIsLoading(true); // Start loading state
     try {
@@ -124,6 +135,22 @@ const Header = () => {
       fetchCartCount(user.userId);
       fetchWishlistCount(user.userId);
     }
+
+    const texts = [
+      "🚀 Explore the universe of products...",
+      "🔥 Grab the hottest deals now!",
+      "💎 Unearth rare finds",
+      "🔍 Seek and you shall find...",
+      "🛒 Trendy collections await!",
+      "🛒 EvoCartel makes the shopping easy",
+    ];
+    setFloatingTexts(texts);
+
+    const intervalId = setInterval(() => {
+      setTextIndex(prevIndex => (prevIndex + 1) % texts.length);
+    }, 3000);
+
+    return () => clearInterval(intervalId);
   }, [user]);
 
   const fetchCartCount = async (userId) => {
@@ -175,69 +202,34 @@ const Header = () => {
     return <Loading />;
   }
 
+
+
+
+
+
+
   // console.log("Wishlist Count:",context?.wishlistCount)
 
   return (
 
     <header className='h-20 shadow-md bg-white fixed w-full z-40'>
       <div className="container mx-auto flex items-center justify-between px-4">
-        <div className='cursor-pointer' onClick={handleIconClick}>
+        <div className='cursor-pointer ' onClick={handleIconClick}>
           <Link to='/'>
             <Logo w={200} h={65} />
           </Link>
         </div>
-        <div className="relative mt-4 flex items-center">
-          <div className="relative flex items-center border-2 focus-within:border-gray-300 focus-within:shadow-md">
-            <div className="relative" ref={categoryDropdownRef}>
-              <div
-                className="relative flex items-center cursor-pointer px-2 py-2 focus:outline-none focus:text-gray-600"
-                onClick={toggleCategoryDropdown}
-              >
-                {selectedCategory ? productCategory.find(cat => cat.value === selectedCategory)?.label : "All Categories"}
-                <AiOutlineDown className="ml-2" />
+        <div className="relative flex items-center focus-within:shadow-md p-2 mt-2  bg-transparent">
+          <div className="relative flex-grow">
+            <div className="pl-10 pr-4 py-2 focus:outline-none focus:text-gray-600">
+              
+              <div className="floating-text text-blue-700 text-xl">
+                {floatingTexts[textIndex]}
               </div>
-              {isCategoryDropdownOpen && (
-                <div className="absolute left-0 mt-2 w-48 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto z-10">
-                  <input
-                    type="text"
-                    className="w-[90%] px-2 py-2 border-b mx-2 my-2 focus:outline-none border-2 border-gray-200"
-                    placeholder="Search categories"
-                    onChange={handleCategorySearch}
-                  />
-                  <div className="py-2">
-                    <div className="px-4 py-2 cursor-pointer hover:bg-gray-100" onClick={() => {
-                      setSelectedCategory('');
-                      setIsCategoryDropdownOpen(false);
-                    }}>All Categories</div>
-                    {filteredCategories.map(category => (
-                      <div
-                        key={category.id}
-                        className="px-4 py-2 cursor-pointer hover:bg-gray-100"
-                        onClick={() => {
-                          setSelectedCategory(category.value);
-                          setIsCategoryDropdownOpen(false);
-                        }}
-                      >
-                        {category.label}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-            <span className="mx-2 text-gray-400 text-xl">|</span>
-            <input
-              size={35}
-              type="search"
-              placeholder="Search Your Product Here ..."
-              className="pl-10 pr-4 py-2 focus:outline-none focus:text-gray-600"
-            />
-            <div className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-700">
-              <CiSearch size={20} />
             </div>
           </div>
         </div>
-        <div className="flex items-center mx-6 mt-4 relative">
+        <div className="flex items-center mx-6 mt-4 relative items_menu">
           {user?._id && (
             <div className="relative cursor-pointer text-2xl mr-2" onClick={toggleProfileDropdown} ref={profileDropdownRef}>
               <div className="relative">
@@ -245,7 +237,7 @@ const Header = () => {
                   <img
                     src={`http://localhost:8000/${user?.profilePic}`}
                     alt={user?.name || 'User Profile'}
-                    className="w-10 h-10 rounded-full object-cover"
+                    className="w-12 h-12 rounded-full object-cover border-2 border-blue-200 shadow-slate-900"
                   />
                 ) : (
                   <FaRegUserCircle />
@@ -262,9 +254,10 @@ const Header = () => {
                       {user?.role === 'ADMIN' && (
                         <Link
                           to="/admin-panel/all-products"
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500 hover:text-white transition duration-200 flex items-center"
+                          // target='_blank'
+                          className="px-4 py-2 text-sm text-gray-700 hover:bg-blue-500 hover:text-white transition duration-200 flex items-center"
                         >
-                           Admin Panel
+                          Admin Panel
                         </Link>
                       )}
                     </div>
@@ -316,16 +309,3 @@ const Header = () => {
 }
 
 export default Header;
-
-
-
-
-
-
-
-
-
-
-
-
-

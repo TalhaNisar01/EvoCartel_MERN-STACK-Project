@@ -2,43 +2,56 @@
 
 
 
-
 .admin-panel-container {
   display: flex;
-  min-height: 100vh;
-  background-color: transparent;
 }
 
 .sidebar {
-  border-radius: 20px;
-  background: linear-gradient(to right, #219269, #945bc5);
-  padding: 20px;
-  width: 200px;
+  width: 250px;
+  background-color: #2c3e50;
   color: white;
+  /* flex-grow: 1; */
+  display: flex;
+  height: fixed;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-radius: 30px;
+
+}
+
+.logo-section {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.logo-description {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #ecf0f1;
 }
 
 .profile-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   text-align: center;
   margin-bottom: 20px;
 }
 
 .profile-pic-container {
-  margin-left: 20px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
   margin-bottom: 10px;
 }
 
 .profile-pic {
-  border-radius: 50%;
-  width: 100px;
-  height: 100px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
 .profile-icon {
-  font-size: 100px;
+  font-size: 80px;
 }
 
 .profile-name {
@@ -48,38 +61,40 @@
 
 .profile-role {
   font-size: 14px;
-  color: #ddd;
+  color: #bdc3c7;
 }
 
 .nav-menu {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  width: 100%;
 }
 
 .nav-link {
   display: flex;
   align-items: center;
-  gap: 10px;
+  padding: 10px;
   color: white;
   text-decoration: none;
-  padding: 15px;
-  border-radius: 10px;
-  transition: background 0.3s, transform 0.3s;
   font-size: 16px;
+  transition: background-color 0.3s;
 }
 
 .nav-link:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: scale(1.05);
+  background-color: #34495e;
+}
+
+.nav-link svg {
+  margin-right: 10px;
 }
 
 .main-content {
   flex: 1;
   padding: 20px;
-  background: #f8f9fa;
 }
 
+
+
+
+/*  */
 .bg-white {
   background: white;
 }
@@ -222,7 +237,7 @@
 
 /* Footer Styles */
 footer {
-  background: #1f2937;
+  background: linear-gradient(to right, #219269, #945bc5);
   color: #ffffff;
 }
 
@@ -537,3 +552,84 @@ img {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Header Styling and responsiveness */
+/* Media Query for screen widths below 1142px */
+@media (max-width: 1142px) {
+  /* Adjust logo size */
+  .logo {
+    width: 100px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+  }
+  .search-field .categroy-list{
+    display: none;
+  }
+
+  .slash{
+    display: none;
+  }
+
+  /* Adjust the search field size */
+  .search-field {
+    width: 80%; /* Adjust the width as needed */
+    font-size: 14px; /* Adjust the font size as needed */
+  }
+
+  /* Adjust the size and spacing of header items */
+  .header-items {
+    margin: 0; /* Adjust margins if needed */
+    font-size: 14px; /* Adjust font size if needed */
+  }
+
+  /* Adjust profile icon size */
+  .profile-icon {
+    font-size: 24px; /* Adjust the font size as needed */
+  }
+
+  /* Adjust cart and wishlist icons size */
+  .icon-size {
+    font-size: 24px; /* Adjust the font size as needed */
+  }
+}
+
+
+
+
+@media (max-width: 978px){
+  .searchfield{
+    width: 100%;
+    padding-left: 1px;
+  }
+  .search-field{
+    width: 0%;
+  }
+
+}
+
+
+
+
+
+/* styles.css */
+.floating-text {
+  animation: floatText 3s ease-in-out infinite;
+}
+
+@keyframes floatText {
+  0% { opacity: 0; transform: translateY(-20px); }
+  50% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(20px); }
+}

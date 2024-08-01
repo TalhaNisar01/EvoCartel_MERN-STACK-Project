@@ -1,15 +1,24 @@
 import React from 'react';
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
+import Logo from './Logo';
+import { Link } from 'react-router-dom';
+
+
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-white py-16">
+    <footer className="bg-gray-800 text-white py-8">
+      
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Information */}
           <div>
-            <h3 className="text-2xl font-bold mb-4">EvoCartel</h3>
-            <p className="text-gray-400 mb-6">
+            
+          <div className='mix-blend-multiply ml-0 mb-4'>
+                <Link to='/'>
+                <Logo w={200} h={65} />
+              </Link>
+            </div>            <p className="text-gray-400 mb-6">
               EvoCartel is your one-stop shop for all your needs. From electronics to fashion, we have it all. Shop with confidence and enjoy our exclusive deals.
             </p>
             <p className="text-gray-400">

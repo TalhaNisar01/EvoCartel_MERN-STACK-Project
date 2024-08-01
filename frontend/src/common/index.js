@@ -130,7 +130,8 @@ const summaryApi = {
   updateOrderStatus:{
    url: `${backendDomain}/api/update-order-status`,
     method: 'POST'
-  }
+  },
+
 
 
 };

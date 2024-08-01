@@ -27,7 +27,13 @@ const UserProfile = () => {
   const [orders, setOrders] = useState([]);
   const [showOrders, setShowOrders] = useState(false);
 
+  const [hasViewedStatusUpdate, setHasViewedStatusUpdate] = useState(false);
 
+  const handleShowOrders = () => {
+    setShowOrders(true);
+    setHasViewedStatusUpdate(true);
+  };
+  
 
   const getStatusClass = (status) => {
     switch (status) {
@@ -336,7 +342,9 @@ const UserProfile = () => {
 
 {showOrders && (
         <div className="modal">
+
           <div className="modal-content order-modal-content">
+
             <span className="close" onClick={() => setShowOrders(false)}>&times;</span>
             <h2>Order Details</h2>
             {orders.length === 0 ? (

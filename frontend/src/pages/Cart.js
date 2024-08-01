@@ -450,7 +450,7 @@ const Cart = () => {
                         <div className='w-full'>
                             {data.map((product, index) => (
                                 <div key={product?._id + "Add To Cart Loading"} className='w-full bg-white h-32 my-2 border border-gray-300 rounded-lg shadow-md grid grid-cols-[128px,1fr]'>
-                                    <div className='w-32 h-32 bg-gray-100 rounded-l-lg'>
+                                    <div className='w-32 h-32 bg-gray-100 rounded-l-lg mix-blend-multiply'>
                                         <img src={product?.productId?.productImage[0]} className='w-full h-full object-contain' />
                                     </div>
                                     <div className='px-4 py-2 relative'>

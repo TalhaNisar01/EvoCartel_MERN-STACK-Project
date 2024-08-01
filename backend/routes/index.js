@@ -44,7 +44,6 @@ const updateOrderStatusController  = require('../controller/updateOrderStatusCon
 
 
 
-
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'uploads/');
@@ -101,6 +100,10 @@ router.get('/my-orders', authToken, getOrderController);
 
 
 router.post('/update-order-status', authToken,updateOrderStatusController);
+
+
+
+
 
 
 module.exports = router;
