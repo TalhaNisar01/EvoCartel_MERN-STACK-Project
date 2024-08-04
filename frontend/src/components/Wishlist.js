@@ -6,6 +6,8 @@ import emptyWishlistGif from '../assets/empty_cart.gif';
 import { Link } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import './Wishlist.css'
+
 
 const Wishlist = () => {
     const [data, setData] = useState([]);
@@ -134,13 +136,16 @@ const Wishlist = () => {
                                             <img src={product?.productImage[0] || ''} className='w-full h-full object-contain' alt={product?.productName} />
                                         </div>
                                         <div className='px-4 py-2 relative'>
-                                            <button 
-                                                className='absolute right-0 top-2 bg-gray-200 text-gray-700 hover:bg-gray-300 py-1 px-3 rounded-lg' 
+                                            <button
+                                                className='absolute right-0 top-2 bg-gray-200 text-gray-700 hover:bg-gray-300 py-1 px-3 rounded-lg'
                                                 onClick={() => removeFromWishlist(product?.productId)}
                                             >
                                                 Remove
                                             </button>
-                                            <h2 className='text-xl font-semibold line-clamp-1'>{product?.productName}</h2>
+                                            <h2 className='text-xl sm:text-xl md:text-2xl font-semibold line-clamp-1 productname-wishlist'>
+                                                {product?.productName}
+                                            </h2>
+
                                             <p className='capitalize text-gray-600'>{product?.category}</p>
                                             <div className='flex items-center justify-between mt-2'>
                                                 <p className='text-gray-700 font-medium text-lg'>${(product?.sellingPrice).toFixed(2)}</p>
@@ -156,7 +161,7 @@ const Wishlist = () => {
                                         <p>Total Items</p>
                                         <p>{data.length}</p>
                                     </div>
-                                    <button 
+                                    <button
                                         className='bg-red-500 text-white hover:bg-red-700 py-2 px-4 rounded-lg mt-4'
                                         onClick={() => setClearConfirmation(true)}
                                     >

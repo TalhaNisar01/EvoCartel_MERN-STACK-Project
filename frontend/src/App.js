@@ -8,6 +8,7 @@ import summaryApi from './common/index'
 import Context from './context/index';
 import {useDispatch} from 'react-redux'
 import { setUserDetails } from './store/userSlice';
+import ChatbotComponent from './Chatbot';
 
 
 function App() {
@@ -78,6 +79,7 @@ function App() {
     <main className='min-h-[calc(100vh-110px)] pt-20 bg-white'>
       <Outlet />
     </main>
+    {/* <ChatbotComponent /> */}
     <Footer />
     </Context.Provider>
     </>

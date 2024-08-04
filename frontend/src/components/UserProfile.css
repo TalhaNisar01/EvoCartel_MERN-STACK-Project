@@ -368,3 +368,60 @@
   border-radius: 3px;
   margin-left: 10px;
 }
+
+
+
+
+
+
+
+
+/* Media Queries */
+
+
+
+
+@media (max-width: 1000px) {
+  .user-profile-sidebar{
+    width: 30%;
+  }
+  .btn-view-orders{
+    font-size: 16px;
+    padding: 6px 10px;
+    margin-top: 14px;
+  }
+  
+
+
+}
+
+
+
+
+
+
+@media (max-width: 500px) {
+  .user-profile-sidebar{
+    width: 40%;
+  }
+  .btn-view-orders{
+    font-size: 16px;
+    padding: 2px 6px;
+    margin-top: 14px;
+  }
+  
+
+
+}
+
+
+
+
+@media (max-width: 500px) {
+ 
+  .btn-delete{
+    margin-top: 12px;
+  }
+
+
+}

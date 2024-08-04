@@ -103,3 +103,49 @@
     font-size: 1.2rem;
     color: #555;
 }
+
+
+
+
+
+/* Media Queries */
+
+
+
+
+.productname-wishlist {
+  overflow: hidden; /* Hide overflow text */
+  text-overflow: ellipsis; /* Add ellipsis for overflow text */
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+@media (max-width: 768px) {
+  .productname-wishlist {
+    font-size: 1.25rem; /* Adjust font size for tablets */
+  }
+}
+
+@media (max-width: 576px) {
+  .productname-wishlist {
+    font-size: 1rem; /* Adjust font size for mobile devices */
+  }
+}
+
+
+
+@media (max-width: 500px) {
+    .productname-wishlist {
+      font-size: 1rem; /* Adjust font size for mobile devices */
+      width: 60%;
+      white-space: wrap;
+    }
+  }
+
+  
+@media (max-width: 350px) {
+    .productname-wishlist {
+      font-size: 1rem; /* Adjust font size for mobile devices */
+      width: 60%;
+      white-space: wrap;
+    }
+  }
