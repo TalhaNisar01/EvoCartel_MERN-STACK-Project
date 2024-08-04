@@ -655,15 +655,13 @@ const Header = () => {
     {user?._id && (
       <Link to={`/user-profile/${user?._id}`} className="menu-item w-full flex items-center cursor-pointer">
         {user?.profilePic ? (
-        
           <img
             src={`http://localhost:8000/${user?.profilePic}`}
             alt={user?.name || 'User Profile'}
             className="w-8 h-8 rounded-full object-cover border-2 border-blue-200 shadow-slate-900 cursor-pointer"
-            
           />
         ) : (
-          <FaRegUserCircle className="text-2xl cursor-pointer"  />
+          <FaRegUserCircle className="text-2xl cursor-pointer" />
         )}
         <span className="ml-2">{user?.name || 'Profile'}</span>
       </Link>
@@ -673,7 +671,7 @@ const Header = () => {
       <div className="menu-item w-full">
         <Link
           to="/admin-panel/all-products"
-          className="py-2 text-md text-gray-600  transition duration-200 flex items-center"
+          className="py-2 text-md text-gray-600 transition duration-200 flex items-center"
         >
           <AiOutlineSetting className="text-2xl ml-0 mr-2" />
           Admin Panel
@@ -681,37 +679,48 @@ const Header = () => {
       </div>
     )}
 
-    <div className="menu-item item-wishlist w-full flex items-center">
-      <Link to="/wishlist" className="flex items-center w-full">
-        <div className='relative flex items-center'>
-          <AiOutlineHeart className="text-3xl mr-2" />
-          <div className='absolute top-[-5px] left-[-5px] bg-gray-500 text-white rounded-full p-1 flex items-center justify-center text-xs'>
-            {context?.wishlistCount}
-          </div>
-          <span className="text-md text-gray-600">Wishlist</span>
+    {user?._id && (
+      <>
+        <div className="menu-item item-wishlist w-full flex items-center">
+          <Link to="/wishlist" className="flex items-center w-full">
+            <div className='relative flex items-center'>
+              <AiOutlineHeart className="text-3xl mr-2" />
+              <div className='absolute top-[-5px] left-[-5px] bg-gray-500 text-white rounded-full p-1 flex items-center justify-center text-xs'>
+                {context?.wishlistCount}
+              </div>
+              <span className="text-md text-gray-600">Wishlist</span>
+            </div>
+          </Link>
         </div>
-      </Link>
-    </div>
 
-    <div className="menu-item item-cart w-full flex items-center">
-      <Link to="/cart" className="flex items-center w-full">
-        <div className='relative flex items-center'>
-          <AiOutlineShoppingCart className="text-3xl mr-2" />
-          <div className='absolute top-[-5px] left-[-5px] bg-gray-500 text-white rounded-full p-1 flex items-center justify-center text-xs'>
-            {context?.cartProductCount}
-          </div>
-          <span className="text-md text-gray-600">Cart</span>
+        <div className="menu-item item-cart w-full flex items-center">
+          <Link to="/cart" className="flex items-center w-full">
+            <div className='relative flex items-center'>
+              <AiOutlineShoppingCart className="text-3xl mr-2" />
+              <div className='absolute top-[-5px] left-[-5px] bg-gray-500 text-white rounded-full p-1 flex items-center justify-center text-xs'>
+                {context?.cartProductCount}
+              </div>
+              <span className="text-md text-gray-600">Cart</span>
+            </div>
+          </Link>
         </div>
-      </Link>
-    </div>
+      </>
+    )}
 
     {user?._id ? (
       <button onClick={handleLogout} className="menu-item gradient-button text-sm w-full ml-0">Logout</button>
     ) : (
-      <Link to='./Login' className="menu-item gradient-button text-sm w-full ml-0">Login</Link>
+      <>
+      <div  className='menu-item item-cart w-full flex items-center' >
+
+      
+      <Link to='./Login' className="menu-item gradient-button text-sm ml-0 w-full">Login</Link>
+      </div>
+      </>
     )}
   </div>
 )}
+
 
 
 
